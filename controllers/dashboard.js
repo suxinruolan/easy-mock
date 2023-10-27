@@ -1,3 +1,11 @@
+/*
+ * @Author: lipengshuai 916709059@qq.com
+ * @Date: 2023-10-18 14:10:42
+ * @LastEditors: lipengshuai 916709059@qq.com
+ * @LastEditTime: 2023-10-26 22:09:22
+ * @FilePath: /Easy-Mock/controllers/dashboard.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 'use strict'
 
 const moment = require('moment')
@@ -12,10 +20,11 @@ const cache = LRU({ max: 1, maxAge: 1000 * 60 * 60 })
  */
 
 function getUseTotalCount (query = {}) {
-  return MockCount.aggregate(
+  console.log('query',query);
+  return MockCount.aggregate([
     { $match: query },
     { $group: { _id: null, total: { $sum: '$count' } } }
-  ).then(data => data[0] ? /* istanbul ignore next */ data[0].total : 0)
+  ]).then(data => data[0] ? /* istanbul ignore next */ data[0].total : 0)
 }
 
 module.exports = class DashboardController {
@@ -31,7 +40,7 @@ module.exports = class DashboardController {
         '$gte': new Date(moment().format('YYYY-MM-DD'))
       }
     }
-
+    debugger
     if (!result) {
       const data = await Promise.all([
         User.count(),

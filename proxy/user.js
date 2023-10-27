@@ -1,16 +1,24 @@
+/*
+ * @Author: lipengshuai 916709059@qq.com
+ * @Date: 2023-10-18 14:10:42
+ * @LastEditors: lipengshuai 916709059@qq.com
+ * @LastEditTime: 2023-10-26 10:12:18
+ * @FilePath: /Easy-Mock/proxy/user.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 'use strict'
 
 const _ = require('lodash')
 const { User } = require('../models')
 
 const gravatar = [
-  '//img.souche.com/20161230/png/58f22ad636a0f33bad8762688f78d425.png',
-  '//img.souche.com/20161230/png/6cdcda90c2f86ba1f45393cf5b26e324.png',
-  '//img.souche.com/20161230/png/f9d10bb683d940dd14dc1b1344e89568.png',
-  '//img.souche.com/20161230/png/8bb4f0fd45ed6ae26533eadd85f0f7ea.png',
-  '//img.souche.com/20161230/png/0795744371fd5869af6cab796bdacb95.png',
-  '//img.souche.com/20161230/png/bc836261fbb654dda6b653e428014279.png',
-  '//img.souche.com/20161230/png/fd9f8aecab317e177655049a49b64d02.png'
+  'media.istockphoto.com/id/1439016527/zh/%E7%85%A7%E7%89%87/new-years-card-silhouette-of-a-jumping-businessman-mt-fuji-and-the-first-sunrise.jpg?s=1024x1024&w=is&k=20&c=XYn2BzXDV3q90BIA5jpuWzcWY_cKfSqymBas31Sh2Qk=',
+  'media.istockphoto.com/id/1439016527/zh/%E7%85%A7%E7%89%87/new-years-card-silhouette-of-a-jumping-businessman-mt-fuji-and-the-first-sunrise.jpg?s=1024x1024&w=is&k=20&c=XYn2BzXDV3q90BIA5jpuWzcWY_cKfSqymBas31Sh2Qk=',
+  'media.istockphoto.com/id/1439016527/zh/%E7%85%A7%E7%89%87/new-years-card-silhouette-of-a-jumping-businessman-mt-fuji-and-the-first-sunrise.jpg?s=1024x1024&w=is&k=20&c=XYn2BzXDV3q90BIA5jpuWzcWY_cKfSqymBas31Sh2Qk=',
+  'media.istockphoto.com/id/1439016527/zh/%E7%85%A7%E7%89%87/new-years-card-silhouette-of-a-jumping-businessman-mt-fuji-and-the-first-sunrise.jpg?s=1024x1024&w=is&k=20&c=XYn2BzXDV3q90BIA5jpuWzcWY_cKfSqymBas31Sh2Qk=',
+  'media.istockphoto.com/id/1439016527/zh/%E7%85%A7%E7%89%87/new-years-card-silhouette-of-a-jumping-businessman-mt-fuji-and-the-first-sunrise.jpg?s=1024x1024&w=is&k=20&c=XYn2BzXDV3q90BIA5jpuWzcWY_cKfSqymBas31Sh2Qk=',
+  'media.istockphoto.com/id/1439016527/zh/%E7%85%A7%E7%89%87/new-years-card-silhouette-of-a-jumping-businessman-mt-fuji-and-the-first-sunrise.jpg?s=1024x1024&w=is&k=20&c=XYn2BzXDV3q90BIA5jpuWzcWY_cKfSqymBas31Sh2Qk=',
+  'media.istockphoto.com/id/1439016527/zh/%E7%85%A7%E7%89%87/new-years-card-silhouette-of-a-jumping-businessman-mt-fuji-and-the-first-sunrise.jpg?s=1024x1024&w=is&k=20&c=XYn2BzXDV3q90BIA5jpuWzcWY_cKfSqymBas31Sh2Qk=',
 ]
 
 module.exports = class UserProxy {
@@ -27,7 +35,7 @@ module.exports = class UserProxy {
   }
 
   static update (user) {
-    return User.update({
+    return User.updateMany({
       _id: user.id
     }, {
       $set: {

@@ -1,3 +1,11 @@
+/*
+ * @Author: lipengshuai 916709059@qq.com
+ * @Date: 2023-10-18 14:10:42
+ * @LastEditors: lipengshuai 916709059@qq.com
+ * @LastEditTime: 2023-10-26 10:04:02
+ * @FilePath: /Easy-Mock/proxy/group.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 'use strict'
 
 const { Group } = require('../models')
@@ -23,7 +31,7 @@ module.exports = class GroupProxy {
   }
 
   static updateById (id, doc) {
-    return Group.update({ _id: id }, { $set: doc })
+    return Group.updateMany({ _id: id }, { $set: doc })
   }
 
   static del (query) {

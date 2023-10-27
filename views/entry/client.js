@@ -1,6 +1,16 @@
+/*
+ * @Author: lipengshuai 916709059@qq.com
+ * @Date: 2023-10-18 14:10:42
+ * @LastEditors: lipengshuai 916709059@qq.com
+ * @LastEditTime: 2023-10-26 22:25:47
+ * @FilePath: /Easy-Mock/views/entry/client.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import Vue from 'vue'
 import iView from 'iview'
 import { createApp } from './main'
+import 'github-markdown-css'
+import 'highlight.js/styles/github.css'
 const { app, router, store } = createApp()
 
 Vue.mixin({

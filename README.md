@@ -316,3 +316,32 @@ If you deployed Easy Mock in your own server, please [tell us](https://github.co
 ## License
 
 [GPL-3.0](https://opensource.org/licenses/GPL-3.0)
+
+##当hljs 报错的时候
+```html
+<!-- node_modules/restc/faas/index.html -->
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.8.0/styles/base16/default-dark.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/codemirror/5.19.0/codemirror.css"></script>
+  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/codemirror/5.19.0/theme/material.css"></script>
+  <script>
+    if (!window.fetch) document.write('<script src="https://github.elemecdn.com/uglifyjs!github/fetch/v1.0.0/fetch.js"><\/script>');
+  </script>
+  <script src="https://npm.elemecdn.com/uglifyjs!jinkela@1.2.18/umd.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/go.min.js"></script>
+  <script src="https://github.elemecdn.com/uglifyjs!codemirror/CodeMirror/5.19.0/lib/codemirror.js"></script>
+  <script src="https://github.elemecdn.com/uglifyjs!codemirror/CodeMirror/5.19.0/mode/javascript/javascript.js"></script>
+  <script src="https://github.elemecdn.com/uglifyjs!codemirror/CodeMirror/5.19.0/addon/display/autorefresh.js"></script>
+  <script src="https://npm.elemecdn.com/json-format-safely@1.2.2/index.js"></script>
+```
+```sh
+node_modules/restc/faas/install_production.sh
+#!/bin/bash
+
+grep --text -Pzo "<script extract>\s*\K([\s\S]+?)(?=\s*</script>)" index.html | tr '\0' '\n' > index.js
+hash=$(md5sum index.js | cut -c 1-5)
+mv index.js index-$hash.js
+sed -i "/<script extract>/{:b;$!N;/<\/script>/!bb;s/.*/<script src=\"https:\/\/cdn\.bootcdn\.net\/ajax\/libs\/index-$hash.js\"><\/script>/}" index.html
+
+```
